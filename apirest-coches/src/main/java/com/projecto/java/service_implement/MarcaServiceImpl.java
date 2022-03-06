@@ -25,17 +25,15 @@ public class MarcaServiceImpl implements MarcaService {
 	@Override
 	@Transactional (readOnly = true)
 	public Marca findByMarca(int id) {
-		return repo.findById(id).get();
+		return repo.findById(id).orElse(null);
 	}
 	
 	@Override
-	@Transactional (readOnly = true)
 	public Marca saveMarca(Marca marca) {
 		return repo.save(marca);
 	}
 	
 	@Override
-	@Transactional (readOnly = true)
 	public void deleteMarca(int id) {
 		repo.deleteById(id);
 	}

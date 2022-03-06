@@ -8,29 +8,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projecto.java.Dao.ModeloRepository;
 import com.projecto.java.model.Modelo;
+import com.projecto.java.service.ModeloService;
 
 @Service
-public class ModeloServiceImpl {
+public class ModeloServiceImpl implements ModeloService {
 
 	@Autowired
 	private ModeloRepository repo;
 
+	@Override
 	@Transactional (readOnly = true)
 	public List<Modelo> findAllModelos(){
 		return  (List<Modelo>) repo.findAll();
 	}
 	
+	@Override
 	@Transactional (readOnly = true)
 	public Modelo findByModelo(int id) {
-		return repo.findById(id).get();
+		return repo.findById(id).orElse(null);
 	}
 	
-	@Transactional (readOnly = true)
+	@Override
 	public Modelo saveModelo(Modelo modelo) {
 		return repo.save(modelo);
 	}
 	
-	@Transactional (readOnly = true)
+	@Override
 	public void deleteModelo(int id) {
 		repo.deleteById(id);
 	}

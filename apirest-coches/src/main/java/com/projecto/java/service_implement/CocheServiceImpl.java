@@ -25,17 +25,15 @@ public class CocheServiceImpl implements CocheService {
 	@Override
 	@Transactional (readOnly = true)
 	public Coche findByCoche(int id) {
-		return repo.findById(id).get();
+		return repo.findById(id).orElse(null);
 	}
 	
 	@Override
-	@Transactional (readOnly = true)
 	public Coche saveCoche(Coche coche) {
 		return repo.save(coche);
 	}
 	
 	@Override
-	@Transactional (readOnly = true)
 	public void deleteCoche(int id) {
 		repo.deleteById(id);
 	}

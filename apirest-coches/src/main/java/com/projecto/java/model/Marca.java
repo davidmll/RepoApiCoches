@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Marca implements Serializable{
 	
 	private String nombre;
 	
-	@OneToMany(mappedBy = "marca")
+	@OneToMany(mappedBy = "marca",fetch = FetchType.LAZY)
 	private List<Coche> coches;
 	
 //	Getters and Setters

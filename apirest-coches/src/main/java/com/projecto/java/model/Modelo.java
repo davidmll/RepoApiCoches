@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table (name = "modelos")
@@ -27,10 +30,17 @@ public class Modelo implements Serializable{
 	private int idmodelo;
 	
 	private String nombre;
+	@Temporal(TemporalType.DATE)
 	private Date fecha_modelo;
 	
 	@OneToMany(mappedBy = "modelo")
 	private List<Coche> coches;
+	
+//	Method
+	@PrePersist
+	public void prePersist() {
+		fecha_modelo = new Date();
+	}
 
 //	Getters and Setters
 	
